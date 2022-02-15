@@ -14,11 +14,11 @@ export VAULT_ADDR=https://<VAULT_ADDRESS>:8200
 
 ```
 ### terraform variables
-this project has one manatory variable *github_project_id* which is the name of the project you want to enable the JWT Auth Method for.
+this project has one manatory variable *github_repository* which is the name of the project you want to enable the JWT Auth Method for.
 this can be set by creating a terraform.tfvars file:
 
 ```text
-github_project_id = "guydemos/demostack"
+github_repository = "GuyBarros/terraform-com-showcase-pipeline"
 ```
 
 ## running the code
