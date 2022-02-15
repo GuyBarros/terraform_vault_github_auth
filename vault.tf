@@ -1,7 +1,7 @@
 
 resource "vault_jwt_auth_backend" "github" {
-    provider = vault.app
 description = "oidc auth backend for github actions"
+ path                = var.vault_auth_mount_path
 oidc_discovery_url="https://token.actions.githubusercontent.com"
 bound_issuer="https://token.actions.githubusercontent.com"
 default_role="demo"
@@ -14,13 +14,12 @@ tune {
 }
 
 resource "vault_jwt_auth_backend_role" "demo"{
-    provider = vault.app
     backend = vault_jwt_auth_backend.github.path
     role_type = "jwt"
     role_name = "demo"
     token_policies = ["default", "hcp-root"]
     bound_claims = {
-         "sub" = "repo:${github_repository.app.full_name}:ref:refs/*"
+         "sub" = "repo:${data.github_repository.vault_actions.full_name}:ref:refs/*"
     }
     bound_subject = ""
     bound_audiences = ["https://github.com/${data.github_user.current.login}"]

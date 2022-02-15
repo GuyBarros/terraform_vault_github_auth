@@ -21,3 +21,9 @@ variable "github_token_type" {
   default     = "default-service"
 }
 
+
+variable "vault_auth_mount_path"{
+    type        = string
+    description = "the mounth path where JWT Auth will be configured"
+    default = "github_jwt"
+}
